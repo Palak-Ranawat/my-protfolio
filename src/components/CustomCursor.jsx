@@ -26,7 +26,7 @@ export default function CustomCursor() {
         transform: `translate(${position.x - 40}px, ${position.y - 40}px)`,
       }}
     >
-      <div className="w-20 h-20 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 blur-2xl opacity-80"></div>
+      <div className="w-20 h-20 rounded-full bg-gradient-to-r from-[#1cd8d2] to-[#00bf8f] blur-2xl opacity-70"></div>
     </div>
   );
 }

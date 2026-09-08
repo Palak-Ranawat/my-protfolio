@@ -1,4 +1,4 @@
-
+import {useState} from "react";
 import Navbar from "./components/Navbar";
 import Home from './section/Home'
 import About from './section/About' 
@@ -9,12 +9,15 @@ import Testimonial from './section/Testimonial'
 import Contact from './section/Contact' 
 import Fotter from './section/Fotter'
 import CustomCursor from "./components/CustomCursor";
-import ParticleBackground from "./components/ParticleBackgraound";
+import ParticleBackground from "./components/ParticleBackgraound"
+import IntroAnimation from "./components/IntroAnimation";
 export default function App(){
+
   return(
     <div className="relative min-h-screen bg-black text-white">
+      <IntroAnimation/>
       <CustomCursor/>
-      <ParticleBackground/>
+     <ParticleBackground/>
       <Navbar/>
       <Home/>
       <About/> 
