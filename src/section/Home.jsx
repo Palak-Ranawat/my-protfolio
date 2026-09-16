@@ -1,7 +1,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Profile from "../assets/profile.jpg";
+import Profile from "../assets/Profile.jpg";
 import resume from "../assets/palak resume.pdf";
 export default function Home() {
   return (
