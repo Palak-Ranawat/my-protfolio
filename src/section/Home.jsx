@@ -1,7 +1,6 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Profile from "../assets/profile.jpg";
 import resume from "../assets/palak resume.pdf";
 export default function Home() {
   return (
@@ -114,7 +113,7 @@ export default function Home() {
 
             {/* Image */}
             <img
-              src={Profile}
+              src="public\profile.jpg"
               alt="Palak"
               className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-full border-4 border-white/10 shadow-2xl"
             />
