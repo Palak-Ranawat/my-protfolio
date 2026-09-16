@@ -59,7 +59,7 @@ export default function About() {
           </motion.div>
 
 
-          {/* RIGHT - WHAT I DO */}
+          
           <motion.div
             initial={{ opacity: 0, x: 80 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -68,7 +68,7 @@ export default function About() {
             className="space-y-6"
           >
 
-            {/* CARD 1 */}
+            {/* CARD 2 */}
             <motion.div
               whileHover={{ x: 10 }}
               transition={{ duration: 0.3 }}

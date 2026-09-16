@@ -5,7 +5,7 @@ import About from './section/About'
 import Skills from './section/Skills' 
 import Project from './section/Project' 
 import Experience from './section/Experience' 
-import Testimonial from './section/Testimonial' 
+import Certificates from './section/Certificates' 
 import Contact from './section/Contact' 
 import Fotter from './section/Fotter'
 import CustomCursor from "./components/CustomCursor";
@@ -22,9 +22,9 @@ export default function App(){
       <Home/>
       <About/> 
       <Skills/> 
-      <Project/> 
+      <Project/>
       <Experience/> 
-      <Testimonial/> 
+      <Certificates/> 
       <Contact/> 
       <Fotter/>
       

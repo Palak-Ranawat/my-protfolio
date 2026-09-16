@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Profile from "../assets/profile.jpg";
-
+import resume from "../assets/palak resume.pdf";
 export default function Home() {
   return (
     <section
@@ -65,8 +65,7 @@ export default function Home() {
             }}
             className="max-w-xl mt-6 text-gray-400 text-base md:text-lg leading-relaxed"
           >
-            I create modern, responsive and interactive websites
-            using React, JavaScript and modern web technologies.
+           Frontend Developer focused on building responsive and user-friendly web applications with React and JavaScript.
           </motion.p>
 
           {/* Buttons */}
@@ -86,12 +85,14 @@ export default function Home() {
               View Projects
             </a>
 
-            <a
-              href="#contact"
-              className="px-6 py-3 rounded-full border border-white/30 font-semibold hover:bg-white hover:text-black transition-all duration-300"
-            >
-              Contact Me
-            </a>
+           <a
+  href={resume}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="px-6 py-3 rounded-full border border-white/30 font-semibold hover:bg-white hover:text-black transition-all duration-300"
+>
+  View Resume
+</a>
           </motion.div>
 
         </div>

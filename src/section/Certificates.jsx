@@ -53,7 +53,7 @@ const cardVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
 };
 
-/* ─── Single certificate card ────────────────────────────────────────────── */
+
 function CertCard({ cert, onClick }) {
   return (
     <motion.div
@@ -69,7 +69,7 @@ function CertCard({ cert, onClick }) {
         }}
       />
 
-      {/* Hover glow */}
+      
       <div
         className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0"
         style={{
@@ -115,7 +115,7 @@ function CertCard({ cert, onClick }) {
           </span>
         </div>
 
-        {/* Highlight pill */}
+        
         <span
           className="inline-block self-start text-[10px] uppercase tracking-[0.2em] font-semibold px-3 py-1 rounded-full mb-3 border"
           style={{
@@ -132,7 +132,6 @@ function CertCard({ cert, onClick }) {
           {cert.title}
         </h3>
 
-        {/* Issuing org */}
         <p
           className="text-sm font-semibold mb-3"
           style={{ color: cert.accent }}
@@ -140,7 +139,7 @@ function CertCard({ cert, onClick }) {
           {cert.organization}
         </p>
 
-        {/* Description */}
+        
         <p className="text-gray-400 text-sm leading-relaxed">
           {cert.description}
         </p>
@@ -159,7 +158,7 @@ export default function Certificates() {
         id="certificates"
         className="relative bg-black text-white py-24 sm:py-32 px-6 md:px-12 lg:px-20 overflow-hidden"
       >
-        {/* Background ambient glows */}
+        
         <div className="absolute top-1/4 -left-20 w-[360px] h-[360px] rounded-full bg-[#1cd8d2] opacity-[0.05] blur-[100px] pointer-events-none" />
         <div className="absolute bottom-1/4 -right-20 w-[300px] h-[300px] rounded-full bg-[#302363] opacity-[0.07] blur-[90px] pointer-events-none" />
 

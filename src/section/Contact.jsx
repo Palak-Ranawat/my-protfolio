@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FiGithub, FiExternalLink, FiSend, FiCheckCircle } from "react-icons/fi";
+import emailjs from "@emailjs/browser";
+const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID;
+const PUBLIC_ID = import.meta.env.VITE_PUBLIC_ID;
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -14,11 +18,39 @@ export default function Contact() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  try {
+    console.log("Sending email...");
+    console.log("Service ID:", SERVICE_ID);
+    console.log("Template ID:", TEMPLATE_ID);
+    console.log("Public ID:", PUBLIC_ID);
+
+    const response = await emailjs.send(
+      SERVICE_ID,
+      TEMPLATE_ID,
+      {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      },
+      PUBLIC_ID
+    );
+
+    console.log("EmailJS response:", response);
+
     setSubmitted(true);
-  };
+  } catch (error) {
+    console.error("EMAILJS ERROR:", error);
+    console.error("Error text:", error?.text);
+    console.error("Error status:", error?.status);
+
+    alert(
+      `Failed to send message.\n\n${error?.text || "Check the browser console."}`
+    );
+  }
+};
 
   return (
     <section
@@ -34,13 +66,13 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
           className="mb-16"
         >
-          <p className="text-pink-500 text-sm md:text-base uppercase tracking-[0.3em] mb-3">
+          <p className="text-[#1cd8d2] text-sm md:text-base uppercase tracking-[0.3em] mb-3">
             Get in Touch
           </p>
 
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold">
             Let's
-            <span className="block bg-gradient-to-r from-pink-500 to-blue-500 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-[#1cd8d2] via-[#00bf8f] to-[#302363] bg-clip-text text-transparent">
               Connect
             </span>
           </h2>
@@ -74,10 +106,10 @@ export default function Contact() {
                 href="https://github.com/Palak-Ranawat"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-between w-full text-white hover:text-pink-400 transition-colors duration-200 group"
+                className="inline-flex items-center justify-between w-full text-white hover:text-[#1cd8d2] transition-colors duration-200 group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-pink-500/40 transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#1cd8d2]/40 transition-colors">
                     <FiGithub className="text-xl" />
                   </div>
                   <div>
@@ -85,7 +117,7 @@ export default function Contact() {
                     <span className="text-xs text-gray-400">@Palak-Ranawat</span>
                   </div>
                 </div>
-                <FiExternalLink className="text-gray-400 group-hover:text-pink-400 transition-colors text-lg" />
+                <FiExternalLink className="text-gray-400 group-hover:text-[#1cd8d2] transition-colors text-lg" />
               </a>
             </div>
           </motion.div>
@@ -101,18 +133,24 @@ export default function Contact() {
             <div className="rounded-3xl bg-white/[0.03] border border-white/10 p-6 sm:p-10 backdrop-blur-xs">
               {submitted ? (
                 <div className="text-center py-8">
-                  <div className="w-14 h-14 mx-auto rounded-full bg-pink-500/10 border border-pink-500/20 flex items-center justify-center mb-4">
-                    <FiCheckCircle className="text-2xl text-pink-500" />
+                  <div className="w-14 h-14 mx-auto rounded-full bg-[#1cd8d2]/10 border border-[#1cd8d2]/20 flex items-center justify-center mb-4">
+                    <FiCheckCircle className="text-2xl text-[#1cd8d2]" />
                   </div>
-                  <h4 className="text-2xl font-bold text-white mb-2">
-                    Message Drafted!
-                  </h4>
-                  <p className="text-gray-300 text-sm sm:text-base max-w-md mx-auto mb-4">
-                    Thank you, <span className="font-semibold text-white">{formData.name}</span>! Direct backend email dispatch is currently being configured for this portfolio.
-                  </p>
-                  <p className="text-gray-400 text-xs sm:text-sm max-w-md mx-auto mb-8">
-                    In the meantime, you can reach out directly via my GitHub profile.
-                  </p>
+             <h4 className="text-2xl font-bold text-white mb-2">
+  Message Sent Successfully!
+</h4>
+
+<p className="text-gray-300 text-sm sm:text-base max-w-md mx-auto mb-4">
+  Thank you,{" "}
+  <span className="font-semibold text-white">
+    {formData.name}
+  </span>
+  ! Your message has been sent successfully.
+</p>
+
+<p className="text-gray-400 text-xs sm:text-sm max-w-md mx-auto mb-8">
+  I'll get back to you as soon as possible.
+</p>
                   <button
                     type="button"
                     onClick={() => {
@@ -141,7 +179,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Enter your name"
-                      className="w-full px-4 py-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-pink-500/70 focus:ring-1 focus:ring-pink-500/40 transition-all duration-200 text-sm sm:text-base"
+                      className="w-full px-4 py-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#1cd8d2]/70 focus:ring-1 focus:ring-[#1cd8d2]/40 transition-all duration-200 text-sm sm:text-base"
                     />
                   </div>
 
@@ -160,7 +198,7 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="Enter your email address"
-                      className="w-full px-4 py-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-pink-500/70 focus:ring-1 focus:ring-pink-500/40 transition-all duration-200 text-sm sm:text-base"
+                      className="w-full px-4 py-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#1cd8d2]/70 focus:ring-1 focus:ring-[#1cd8d2]/40 transition-all duration-200 text-sm sm:text-base"
                     />
                   </div>
 
@@ -179,13 +217,13 @@ export default function Contact() {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Write your message here..."
-                      className="w-full px-4 py-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-pink-500/70 focus:ring-1 focus:ring-pink-500/40 transition-all duration-200 resize-none text-sm sm:text-base"
+                      className="w-full px-4 py-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#1cd8d2]/70 focus:ring-1 focus:ring-[#1cd8d2]/40 transition-all duration-200 resize-none text-sm sm:text-base"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 text-white font-semibold text-sm sm:text-base hover:opacity-90 active:scale-95 transition-all duration-200 cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-[#1cd8d2] to-[#00bf8f] text-black font-semibold text-sm sm:text-base hover:opacity-90 active:scale-95 transition-all duration-200 cursor-pointer"
                   >
                     <FiSend className="text-base" />
                     <span>Send Message</span>
@@ -202,7 +240,7 @@ export default function Contact() {
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2 }}
-          className="origin-left mt-24 h-px bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500"
+          className="origin-left mt-24 h-px bg-gradient-to-r from-[#1cd8d2] via-[#00bf8f] to-[#302363]"
         />
       </div>
     </section>

@@ -108,7 +108,7 @@ export default function Experience() {
                   ))}
                 </div>
 
-                {/* OPPORTUNITY CTA */}
+                
                 {item.isOpportunity && (
                   <a
                     href="#contact"

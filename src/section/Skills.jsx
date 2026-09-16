@@ -4,8 +4,6 @@ import {
   SiNextdotjs,
   SiTypescript,
   SiTailwindcss,
-  SiPython,
-  SiAngular,
 } from "react-icons/si";
 import { DiNodejsSmall } from "react-icons/di";
 
@@ -28,24 +26,17 @@ export default function Skills() {
     { icon: <SiNextdotjs />, name: "Next.js" },
     { icon: <SiTypescript />, name: "TypeScript" },
     { icon: <SiTailwindcss />, name: "Tailwind CSS" },
-    { icon: <SiPython />, name: "Python" },
     { icon: <DiNodejsSmall />, name: "Node.js" },
-    { icon: <SiAngular />, name: "Angular" },
   ];
 
-  // Duplicate skills for infinite slider
+ 
   const repeated = [...skills, ...skills];
 
-  // --------------------------------
-  // States
-  // --------------------------------
 
   const [dir, setDir] = useState(-1);
   const [active, setActive] = useState(false);
 
-  // --------------------------------
-  // Refs
-  // --------------------------------
+
 
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
@@ -57,9 +48,8 @@ export default function Skills() {
 
   const x = useMotionValue(0);
 
-  // --------------------------------
   // Auto Slider
-  // --------------------------------
+
 
   useEffect(() => {
     const track = trackRef.current;
@@ -94,9 +84,7 @@ export default function Skills() {
     };
   }, [dir, active, x]);
 
-  // --------------------------------
-  // Mouse / Touch Controls
-  // --------------------------------
+  
 
   const handlePointerDown = (e) => {
     setActive(true);
@@ -148,9 +136,7 @@ export default function Skills() {
         justify-center
       "
     >
-      {/* -------------------------------- */}
-      {/* Background Glow */}
-      {/* -------------------------------- */}
+     
 
       <div className="absolute inset-0 pointer-events-none">
 
@@ -184,9 +170,7 @@ export default function Skills() {
 
       </div>
 
-      {/* -------------------------------- */}
-      {/* Heading */}
-      {/* -------------------------------- */}
+     
 
       <motion.h2
         className="
@@ -220,9 +204,6 @@ export default function Skills() {
         My Skills
       </motion.h2>
 
-      {/* -------------------------------- */}
-      {/* Subtitle */}
-      {/* -------------------------------- */}
 
       <motion.p
         className="
@@ -254,10 +235,7 @@ export default function Skills() {
         Modern Applications | Modern Technologies
       </motion.p>
 
-      {/* -------------------------------- */}
-      {/* Skills Slider */}
-      {/* -------------------------------- */}
-
+      
       <div
         className="
           relative
@@ -343,9 +321,7 @@ export default function Skills() {
         </motion.div>
       </div>
 
-      {/* -------------------------------- */}
-      {/* Direction Button */}
-      {/* -------------------------------- */}
+     
 
       <button
         onClick={changeDirection}
