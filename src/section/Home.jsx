@@ -1,7 +1,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import resume from "../assets/palak resume.pdf";
+import resume from "../assets/palak resume(1).pdf";
 export default function Home() {
   return (
     <section
